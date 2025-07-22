@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\ChampIcons\Yasuo.png" />
+    <None Remove="Resources\kr_flag.png" />
     <None Remove="Resources\logo.png" />
     <None Remove="Resources\logo2.png" />
+    <None Remove="Resources\logo3.png" />
     <None Remove="Resources\mainbackground.png" />
+    <None Remove="Resources\profileiconplaceholder.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,9 +25,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\logo.png" />
-    <Resource Include="Resources\logo2.png" />
-    <Resource Include="Resources\mainbackground.png" />
+    <Resource Include="Resources\ChampIcons\Yasuo.png" />
+    <Resource Include="Resources\FlagIcons\kr_flag.png" />
+    <Resource Include="Resources\Logos\logo.png" />
+    <Resource Include="Resources\Logos\logo2.png" />
+    <Resource Include="Resources\Logos\logo3.png" />
+    <Resource Include="Resources\Background\mainbackground.png" />
+    <Resource Include="Resources\UserIcons\profileiconplaceholder.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

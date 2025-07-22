@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="KDA.ChampionStatsListItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KDA"
+             xmlns:converters="clr-namespace:KDA.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="50">
+
+    <!--컨버트 적용-->
+    <UserControl.Resources>
+        <converters:KdaToBrushConverter x:Key="KdaToBrushConverter"/>
+        <converters:WinRateToBrushConverter x:Key="WinRateToBrushConverter"/>
+    </UserControl.Resources>
+
+    <Grid Height="70" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!--챔피언 아이콘-->
+        <Border Grid.Column="0" Width="40" Height="40" CornerRadius="20">
+            <Border.Background>
+                <ImageBrush ImageSource="{Binding ChampIconPath}"/>
+            </Border.Background>
+        </Border>
+
+        <!--챔피언 이름, CS-->
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+            <TextBlock Text="{Binding ChampName}" Foreground="White" FontWeight="Bold"/>
+            <TextBlock Text="{Binding ChampCS}" Foreground="#AAA" FontSize="11"/>
+        </StackPanel>
+
+        <!--챔피언 KDA-->
+        <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding KdaScore}" 
+                       Foreground="{Binding KdaValue, Converter={StaticResource KdaToBrushConverter}}" 
+                       FontWeight="Bold"/>
+            <TextBlock Text="{Binding KdaDetail}" Foreground="#AAA" FontSize="11"/>
+        </StackPanel>
+
+        <!--챔피언 승률-->
+        <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Text="{Binding WinRate}" 
+                       Foreground="{Binding WinRateValue, Converter={StaticResource WinRateToBrushConverter}}" 
+                       FontWeight="Bold"/>
+            <TextBlock Text="{Binding GameCount}" Foreground="#AAA" FontSize="11" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

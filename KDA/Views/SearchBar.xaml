@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="KDA.SearchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:KDA"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="60"
+             d:DesignWidth="800">
+    
+    <!--검색바 전체 영역-->
+    <Border Width="800"
+            Height="60"
+            BorderBrush="#3D6B8C"
+            BorderThickness="1"
+            CornerRadius="5">
+        
+        <!--검색바 배경색-->
+        <Border.Background>
+            <SolidColorBrush Color="#1A223F"
+                             Opacity="0.85" />
+        </Border.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--지역 선택-->
+            <ComboBox Grid.Column="0"
+                      Width="234"
+                      Margin="20,0,0,0"
+                      VerticalAlignment="Center"
+                      FontSize="15"
+                      materialDesign:HintAssist.Hint="Korea"
+                      materialDesign:TextFieldAssist.UnderlineBrush="#CCD6F6"
+                      BorderThickness="0"
+                      Foreground="#CCD6F6">
+                
+                <!--지역 선택 드롭다운 스타일-->
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background"
+                                Value="#1A223F" />
+                        <Setter Property="Foreground"
+                                Value="#CCD6F6" />
+                        <Setter Property="Height"
+                                Value="40" />
+                        <Setter Property="Padding"
+                                Value="12,0,0,0" />
+                        <Setter Property="VerticalContentAlignment"
+                                Value="Center" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#3D6B8C" />
+                                <Setter Property="Foreground"
+                                        Value="#1A223F" />
+                            </Trigger>
+                            <Trigger Property="IsSelected"
+                                     Value="True">
+                                <Setter Property="Foreground"
+                                        Value="#1A223F" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+
+                <!--지역 선택 드롭다운-->
+                <ComboBoxItem Content="Korea" />
+                <ComboBoxItem Content="North America" />
+                <ComboBoxItem Content="Europe West" />
+                <ComboBoxItem Content="Europe Nordic and East" />
+                <ComboBoxItem Content="Japan" />
+                <ComboBoxItem Content="Brazil" />
+            </ComboBox>
+
+            <!--구분선-->
+            <Separator Grid.Column="1"
+                       Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
+                       Margin="8,8,8,8" />
+
+            <!--사용자 이름 입력 칸-->
+            <TextBox Grid.Column="2"
+                     materialDesign:HintAssist.Hint="소환사명 #KR1"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#CCD6F6"
+                     VerticalContentAlignment="Center"
+                     FontSize="16"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Foreground="#CCD6F6"
+                     CaretBrush="#CCD6F6" />
+
+            <!--검색 버튼-->
+            <Button Grid.Column="3"
+                    Width="60"
+                    Style="{StaticResource MaterialDesignToolButton}">
+                <materialDesign:PackIcon Kind="Magnify"
+                                         Width="24"
+                                         Height="24"
+                                         Foreground="#CCD6F6" />
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

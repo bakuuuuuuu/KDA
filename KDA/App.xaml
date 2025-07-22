@@ -3,13 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:KDA"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Views/SearchResultWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!--중복되는 <Window> 속성들 정리-->
+            <Style x:Key="MyBaseWindowStyle" TargetType="Window">
+                <Setter Property="Height" Value="720"/>
+                <Setter Property="Width" Value="1280"/>
+                <Setter Property="Icon" Value="/Resources/Logos/logo2.png"/>
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
