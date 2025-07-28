@@ -1,345 +1,101 @@
-<Window x:Class="KDA.SearchResultWindow"
+<Window x:Class="KDA.Views.SearchResultWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KDA"
+        xmlns:local="clr-namespace:KDA.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodels="clr-namespace:KDA.ViewModels"
+        xmlns:converters="clr-namespace:KDA.Converters"
         mc:Ignorable="d"
         Title="KDA"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource MyBaseWindowStyle}">
 
     <Grid>
+        <!--배경-->
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/Background/mainbackground.png"
                         Stretch="UniformToFill" />
         </Grid.Background>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <DockPanel Grid.Row="0"
-                       VerticalAlignment="Center"
-                       Height="100">
+        <!--상단 영역(홈 버튼, 검색 바, 윈도우 컨트롤 버튼)-->
+        <Grid Grid.Row="0">
+            <!--홈 버튼-->
+            <Button HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="110,0,0,0"
+                Width="150"
+                Height="60"
+                BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/Logos/logo3.png"
+                    Stretch="Uniform" />
+                </Button.Background>
+            </Button>
 
-                <local:WindowControlButtons DockPanel.Dock="Right"
-                                            Margin="0,0,5,0"
-                                            Width="85" />
-                <Button DockPanel.Dock="Left"
-                        Style="{StaticResource MaterialDesignToolButton}"
-                        Width="150.6"
-                        Height="70"
-                        Margin="95,0,0,0">
-                    <Image Source="/Resources/Logos/logo3.png"
-                           Stretch="Uniform"
-                           Height="50"
-                           Width="92" />
-                </Button>
-                <local:SearchBar Margin="20,0,20,0"
-                                 Width="884" />
-            </DockPanel>
+            <!--검색 바-->
+            <local:SearchBar HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" Margin="130,0,0,0" />
 
-            <Grid Grid.Row="1"
-                  Margin="0,10,0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="320" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <DockPanel Grid.Column="0"
-                           Margin="20,0,10,0">
-
-                    <!--사용자 정보 영역-->
-                    <Border DockPanel.Dock="Top"
-                            Height="200"
-                            CornerRadius="5"
-                            Margin="0,0,0,10"
-                            BorderBrush="#3D6B8C"
-                            BorderThickness="1">
-                        
-                        <!--배경 색-->
-                        <Border.Background>
-                            <SolidColorBrush Color="#1A223F"
-                                             Opacity="0.85" />
-                        </Border.Background>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0"
-                                  Margin="20,20,20,5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                
-                                <!--사용자 아이콘-->
-                                <Border Grid.Column="0"
-                                        Width="80"
-                                        Height="80"
-                                        CornerRadius="40"
-                                        BorderBrush="#3D6B8C"
-                                        BorderThickness="2">
-                                    <Border.Background>
-                                        <ImageBrush ImageSource="/Resources/UserIcons/profileiconplaceholder.png" />
-                                    </Border.Background>
-                                </Border>
-                                
-                                <StackPanel Grid.Column="1"
-                                            VerticalAlignment="Center"
-                                            Margin="15,0,0,0">
-                                    <StackPanel Orientation="Horizontal">
-                                        
-                                        <!--사용자 이름-->
-                                        <TextBlock Text="사과아아"
-                                                   Foreground="White"
-                                                   FontSize="24"
-                                                   FontWeight="Bold" />
-                                        
-                                        <!--사용자 태그-->
-                                        <TextBlock Text="#KR1"
-                                                   Foreground="#777"
-                                                   FontSize="20"
-                                                   VerticalAlignment="Center"
-                                                   Margin="5,0,0,0" />
-                                    </StackPanel>
-                                    
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,5,0,0">
-                                        
-                                        <!--사용자 지역 국기-->
-                                        <Image Source="/Resources/FlagIcons/kr_flag.png"
-                                               Width="16"
-                                               Height="16" />
-                                        
-                                        <!--사용자 래더 랭킹-->
-                                        <TextBlock Text="KR | 래더 랭킹 418,634위"
-                                                   Foreground="#AAA"
-                                                   FontSize="11"
-                                                   VerticalAlignment="Center"
-                                                   Margin="5,0,0,0" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid Grid.Row="1"
-                                  Margin="20,0,20,10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0"
-                                            VerticalAlignment="Center">
-                                    
-                                    <!--전적 갱신 버튼-->
-                                    <Button Content="전적 갱신"
-                                            Width="100"
-                                            Height="39"
-                                            HorizontalAlignment="Left"
-                                            Background="#5E82E1"
-                                            BorderBrush="#5E82E1"
-                                            Foreground="White" />
-                                    
-                                    <!--업데이트 경과 시간-->
-                                    <TextBlock Text="최근 업데이트: 1분 전"
-                                               Foreground="#AAA"
-                                               FontSize="11"
-                                               HorizontalAlignment="Left"
-                                               Margin="0,5,0,15" />
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Column="1"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Left"
-                                            Width="110"
-                                            Margin="32,0,0,0">
-                                    
-                                    <!--사용자 티어-->
-                                    <TextBlock Text="Platinum 1"
-                                               Foreground="White"
-                                               FontSize="18"
-                                               FontWeight="Bold"
-                                               HorizontalAlignment="Left" />
-                                    
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,5,0,0">
-                                        
-                                        <!--사용자 LP-->
-                                        <TextBlock Text="36 LP"
-                                                   Foreground="White"
-                                                   FontSize="12" />
-                                        
-                                        <!--사용자 승/패-->
-                                        <TextBlock Text=" / 63승 50패"
-                                                   Foreground="#AAA"
-                                                   FontSize="12"
-                                                   Margin="5,0,0,0" />
-                                    </StackPanel>
-                                    
-                                    <!--사용자 승률-->
-                                    <TextBlock Text="승률 56%"
-                                               Foreground="#AAA"
-                                               FontSize="12"
-                                               HorizontalAlignment="Left"
-                                               Margin="0,5,0,0" />
-                                </StackPanel>
-                            </Grid>
-                        </Grid>
-                    </Border>
-
-                    <!--모스트 챔피언 영역-->
-                    <Border DockPanel.Dock="Bottom"
-                            Height="360"
-                            CornerRadius="5"
-                            Margin="0,20,0,0"
-                            BorderBrush="#3D6B8C"
-                            BorderThickness="1">
-
-                        <!--배경 색-->
-                        <Border.Background>
-                            <SolidColorBrush Color="#1A223F" Opacity="0.85" />
-                        </Border.Background>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
-                                <Grid.Resources>
-                                    
-                                    <!--랭크 선택 버튼 스타일-->
-                                    <Style x:Key="TabRadioButtonStyle" TargetType="RadioButton">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="Foreground" Value="#888"/>
-                                        <Setter Property="Height" Value="45"/>
-                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="RadioButton">
-                                                    <Border x:Name="border"
-                                        BorderThickness="0"
-                                        CornerRadius="5" 
-                                        Background="{TemplateBinding Background}">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"/>
-                                                    </Border>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsChecked" Value="True">
-                                                            <Setter TargetName="border" Property="BorderBrush" Value="#3D6B8C"/>
-                                                            <Setter TargetName="border" Property="BorderThickness" Value="1"/>
-                                                            <Setter Property="Foreground" Value="White"/>
-                                                        </Trigger>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Foreground" Value="White"/>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Grid.Resources>
-                                
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <!--개인/2인 랭크 버튼-->
-                                <RadioButton Grid.Column="0"
-                                             GroupName="RankType" IsChecked="True"
-                                             Content="개인/2인 랭크"
-                                             Style="{StaticResource TabRadioButtonStyle}" Margin="5,5,5,5"/>
-
-                                <!--자유 랭크 버튼-->
-                                <RadioButton Grid.Column="1"
-                                             GroupName="RankType"
-                                             Content="자유 랭크"
-                                             Style="{StaticResource TabRadioButtonStyle}" Margin="5,5,5,5"/>
-                            </Grid>
-
-                            <UniformGrid Grid.Row="1" Rows="5">
-                                <local:ChampionStatsListItem VerticalAlignment="Top" Margin="10,0,10,0" />
-                                <local:ChampionStatsListItem VerticalAlignment="Top" Margin="10,0,10,0" />
-                                <local:ChampionStatsListItem VerticalAlignment="Top" Margin="10,0,10,0" />
-                                <local:ChampionStatsListItem VerticalAlignment="Top" Margin="10,0,10,0" />
-                                <local:ChampionStatsListItem VerticalAlignment="Top" Margin="10,0,10,0" />
-
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
-
-                </DockPanel>
-
-                <!--전적 상세 정보 영역-->
-                <Border Grid.Column="1"
-                        Margin="10,0,20,0"
-                        CornerRadius="5"
-                        BorderBrush="#3D6B8C"
-                        BorderThickness="1">
-
-                    <!--배경 색-->
-                    <Border.Background>
-                        <SolidColorBrush Color="#1A223F" Opacity="0.85" />
-                    </Border.Background>
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="150"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <!--전적 상세 정보 영역 상단-->
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!--승률 그래프 영역-->
-                            <Border Grid.Column="0" Margin="10,0,10,0" VerticalAlignment="Center">
-                                <TextBlock Text="승률 원 그래프 영역" Foreground="White" FontSize="16"/>
-                            </Border>
-
-                            <!--전적 요약 영역-->
-                            <Border Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Center">
-                                <TextBlock Text="전적 요약 영역" Foreground="White" FontSize="16"/>
-                            </Border>
-
-                            <!--플레이한 챔피언 영역-->
-                            <Border Grid.Column="2" Margin="10,0,10,0" VerticalAlignment="Center">
-                                <TextBlock Text="플레이한 챔피언 영역" Foreground="White" FontSize="16"/>
-                            </Border>
-
-                            <!--선호 포지션 영역-->  
-                            <Border Grid.Column="3" Margin="10,0,20,0" VerticalAlignment="Center">
-                                <TextBlock Text="선호 포지션 영역" Foreground="White" FontSize="16"/>
-                            </Border>
-                        </Grid>
-
-                        <!--전적 상세 정보 영역 하단-->
-                        <Border Grid.Row="0"
-                                BorderBrush="#3D6B8C"
-                                BorderThickness="0,0,0,1" 
-                                VerticalAlignment="Bottom"
-                                Margin="20,0,20,0"/>
-
-                        <!--상세 전적 리스트 영역-->
-                        <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto">
-                            <TextBlock Text="상세 전적 리스트 영역" Foreground="White" FontSize="16"/>
-                        </ScrollViewer>
-                    </Grid>
-                </Border>
-            </Grid>
+            <!--윈도우 컨트롤 버튼-->
+            <local:WindowControlButtons HorizontalAlignment="Right" 
+                                      VerticalAlignment="Top" 
+                                      Margin="0,5,10,0" />
         </Grid>
+
+        <!--하단 영역(사용자 프로필, 모스트 챔피언, 최근 20게임 상세보기)-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="360" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--왼쪽 영역(사용자 프로필, 모스트 챔피언)-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <!--사용자 프로필-->
+                <local:UserProfileCard Grid.Row="0"
+                                       Margin="68,0,27,10"
+                                       DataContext="{Binding UserProfileInfo}"/>
+
+                <!--모스트 챔피언-->
+                <Border Grid.Row="1"
+                        Background="#60000000" 
+                        Margin="68,10,27,25" 
+                        CornerRadius="5"/>
+            </Grid>
+
+            <!--오른쪽 영역(최근 20게임 상세보기)-->
+            <Border Grid.Column="1"
+                    Margin="10,0,20,20" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--상단 영역(원 그래프, 킬관여, 플레이한 챔피언 최근(20게임), 선호 포지션(랭크))-->
+                    <Border Grid.Row="0" 
+                            Background="#60000000" Margin="0,0,52,0"
+                            CornerRadius="5"/>
+
+                    <!--하단 영역(각 게임 상세 내역)-->
+                    <ScrollViewer Grid.Row="1" 
+                                  VerticalScrollBarVisibility="Auto" Margin="0,0,52,5"
+                                  Background="#60000000"/>
+                </Grid>
+            </Border>
+        </Grid>
+
     </Grid>
 </Window>

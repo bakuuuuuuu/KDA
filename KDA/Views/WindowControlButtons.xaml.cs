@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace KDA
+namespace KDA.Views
 {
     // SystemCommands를 사용하여 부모 Window와 상호작용
     public partial class WindowControlButtons : UserControl

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace KDA.Views
 {
     /// <summary>
-    /// SearchBar.xaml에 대한 상호 작용 논리
+    /// UserProfileCard.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class SearchBar : UserControl
+    public partial class UserProfileCard : UserControl
     {
-        public SearchBar()
+        public UserProfileCard()
         {
             InitializeComponent();
         }

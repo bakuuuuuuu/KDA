@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="KDA.SearchBar"
+﻿<UserControl x:Class="KDA.Views.SearchBar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:KDA"
+             xmlns:local="clr-namespace:KDA.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="60"
@@ -39,7 +39,8 @@
                       materialDesign:HintAssist.Hint="Korea"
                       materialDesign:TextFieldAssist.UnderlineBrush="#CCD6F6"
                       BorderThickness="0"
-                      Foreground="#CCD6F6">
+                      Foreground="#CCD6F6"
+                      IsEnabled="False">
                 
                 <!--지역 선택 드롭다운 스타일-->
                 <ComboBox.ItemContainerStyle>

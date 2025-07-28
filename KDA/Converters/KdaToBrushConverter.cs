@@ -13,9 +13,13 @@ namespace KDA.Converters
         {
             if (value is double kda)
             {
-                // 평점이 3.0을 초과시 파랑, 아니면 회색을 반환
-                if (kda > 3.0)
+                // 평점이 10을 초과하면 주황색
+                if (kda > 10.0)
+                    return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C68C44"));
+                // 평점이 3.0을 초과하면 파란색
+                else if (kda > 3.0)
                     return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#54B8A4"));
+                // 그 외에는 회색
                 else
                     return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C5C2C2"));
             }
