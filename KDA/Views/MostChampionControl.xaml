@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="KDA.Views.MostChampionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KDA.Views"
+             mc:Ignorable="d" 
+             Width="265" Height="350"
+             d:DesignHeight="350" d:DesignWidth="265">
+
+    <UserControl.Resources>
+
+        <!--Border 스타일-->
+        <Style x:Key="RoundedBorderStyle" TargetType="Border">
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#3D6B8C"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <!-- Button 스타일 -->
+        <Style x:Key="RankTypeButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderThickness" Value="0"/>
+
+        </Style>
+
+    </UserControl.Resources>
+
+
+    <Border Background="#1A223F"
+            BorderThickness="1"
+            BorderBrush="#3D6B8C"
+            CornerRadius="5"
+            Padding="5 8 6 11"
+            >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Border  Grid.Column="0" Grid.Row="0"
+                     Style="{StaticResource RoundedBorderStyle}"
+                     >
+                <Button
+                    Content="개인/2인 랭크"
+                    Style="{StaticResource RankTypeButtonStyle}"
+                    />
+            </Border>
+                
+            <Border  Grid.Column="1" Grid.Row="0"
+                     Style="{StaticResource RoundedBorderStyle}"
+                     >
+                <Button
+                    Content="자유 랭크"
+                    Style="{StaticResource RankTypeButtonStyle}"
+                    />
+            </Border>
+        
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                        Margin="0 8 0 0 "
+                        >
+                <!--
+                              <ItemsControl ItemsSource="Item List">
+                  <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                          <local:MostChampionItem/>
+                      </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+              </ItemsControl>
+                -->
+                <local:MostChampionItem Loaded="MostChampionItem_Loaded"/>
+                <local:MostChampionItem/>
+                <local:MostChampionItem/>
+                <local:MostChampionItem/>
+                <local:MostChampionItem/>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+</UserControl>

@@ -10,5 +10,15 @@ namespace KDA.Views
             InitializeComponent();
             DataContext = new SearchResultViewModel();
         }
+
+        private void MostChampionControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UserProfileCard_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
