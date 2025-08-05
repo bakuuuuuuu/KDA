@@ -70,14 +70,14 @@
                 </StackPanel>
 
                 <!--티어, LP, 승/패, 승률-->
-                <Grid Grid.Column="1" VerticalAlignment="Center" Margin="22,0,0,0">
+                <Grid Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" Width="110" HorizontalAlignment="Left">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 

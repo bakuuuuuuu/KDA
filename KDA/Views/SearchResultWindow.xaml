@@ -88,9 +88,34 @@
                     </Grid.RowDefinitions>
 
                     <!--상단 영역(원 그래프, 킬관여, 플레이한 챔피언 최근(20게임), 선호 포지션(랭크))-->
-                    <Border Grid.Row="0" 
-                            Background="#60000000" Margin="0,0,52,0"
-                            CornerRadius="5"/>
+                    <Border Grid.Row="0"
+                        Background="#60000000" Margin="0,0,52,0"
+                        CornerRadius="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Margin="10,0,10,0" VerticalAlignment="Center">
+                                <TextBlock Text="승률 원 그래프 영역" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <Border Grid.Column="1" Margin="10,0,10,0" VerticalAlignment="Center">
+                                <TextBlock Text="전적 요약 영역" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <Border Grid.Column="2" Margin="10,0,10,0" VerticalAlignment="Center">
+                                <TextBlock Text="플레이한 챔피언 영역" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <Border Grid.Column="3" Margin="10,0,20,0" VerticalAlignment="Center">
+                                <local:PreferredPosition DataContext="{Binding PreferredPositions}" Margin="0,13,0,0"/>
+                            </Border>
+                        </Grid>
+                    </Border>
 
                     <!--하단 영역(각 게임 상세 내역)-->
                     <ScrollViewer Grid.Row="1" 

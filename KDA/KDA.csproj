@@ -15,7 +15,17 @@
     <None Remove="Resources\logo2.png" />
     <None Remove="Resources\logo3.png" />
     <None Remove="Resources\mainbackground.png" />
+    <None Remove="Resources\PositionIcons\ad.png" />
+    <None Remove="Resources\PositionIcons\jungle.png" />
+    <None Remove="Resources\PositionIcons\mid.png" />
+    <None Remove="Resources\PositionIcons\support.png" />
+    <None Remove="Resources\PositionIcons\top.png" />
     <None Remove="Resources\profileiconplaceholder.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\PositionIcons\ad.png" />
+    <Resource Include="Resources\PositionIcons\jungle.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +43,9 @@
     <Resource Include="Resources\Logos\logo2.png" />
     <Resource Include="Resources\Logos\logo3.png" />
     <Resource Include="Resources\Background\mainbackground.png" />
+    <Resource Include="Resources\PositionIcons\mid.png" />
+    <Resource Include="Resources\PositionIcons\support.png" />
+    <Resource Include="Resources\PositionIcons\top.png" />
     <Resource Include="Resources\UserIcons\profileiconplaceholder.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
